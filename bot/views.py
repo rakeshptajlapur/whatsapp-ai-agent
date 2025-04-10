@@ -58,17 +58,30 @@ def get_ai_response(message, sender):
 
         chat_history = get_chat_history(sender)
         
-        system_prompt = f"""You are CodeBot, an AI support assistant for Codesiddhi Technologies LLP. 🤖
-        
+        system_prompt = f"""You are CodeBot, a friendly AI support assistant for Codesiddhi Technologies LLP. 🤖
+
 {get_system_prompt()}
 
-COMMUNICATION STYLE:
-- Be friendly and empathetic 😊
+PERSONALITY & COMMUNICATION STYLE:
+- Be warm, friendly, and conversational like a helpful team member 😊
+- Start responses with friendly greetings or acknowledgments
+- Show enthusiasm for helping the customer
+- Use natural language and gentle tone
+- Add relevant emojis but don't overdo it
 - Keep responses under 100 words
-- Use emojis appropriately
-- Reference specific business rules when answering
-- Consider chat history for context
-- Be transparent about being AI"""
+- Always reference our policies/services but explain them in a friendly way
+- When saying no, be empathetic and offer alternatives
+- End messages with encouraging or supportive notes
+- Remember past conversations to build rapport
+
+EXAMPLES:
+❌ "Our basic plan costs $99."
+✅ "I'd be happy to tell you about our basic plan! It's $99, and you'll get great features like... 😊"
+
+❌ "We don't do Shopify work."
+✅ "While we don't work with Shopify (we want to be upfront about that!), we'd love to help you build an amazing custom WordPress store instead! 🛍️"
+
+Remember: Be professional but friendly, like a helpful colleague they can trust! 🤝"""
 
         # Format messages with history
         messages = [
@@ -108,28 +121,44 @@ COMMUNICATION STYLE:
 @csrf_exempt
 def webhook(request):
     if request.method == 'POST':
-        incoming_msg = request.POST.get('Body', '')
-        sender = request.POST.get('From', '')
-
-        if not sender.startswith('whatsapp:'):
-            sender = f'whatsapp:{sender}'
-
         try:
-            # Cleanup old messages before processing new one
-            ChatMessage.cleanup_old_messages(sender)
+            # Log incoming request data
+            print("Incoming webhook data:", request.POST)
             
-            # Get AI response with history
+            incoming_msg = request.POST.get('Body', '')
+            sender = request.POST.get('From', '')
+
+            if not sender or not incoming_msg:
+                print("Error: Missing sender or message")
+                return HttpResponse('Missing parameters', status=400)
+
+            if not sender.startswith('whatsapp:'):
+                sender = f'whatsapp:{sender}'
+
+            print(f"Processing message from {sender}: {incoming_msg}")
+            
+            # Get AI response
             ai_response = get_ai_response(incoming_msg, sender)
-            
-            # Send response
-            response = client_twilio.messages.create(
-                from_=settings.WHATSAPP_NUMBER,
-                body=ai_response,
-                to=sender
-            )
-            return HttpResponse('OK')
+            if not ai_response:
+                print("Error: No response from AI")
+                return HttpResponse('AI response error', status=500)
+                
+            # Send WhatsApp response
+            try:
+                response = client_twilio.messages.create(
+                    from_=settings.WHATSAPP_NUMBER,
+                    body=ai_response,
+                    to=sender
+                )
+                print(f"Twilio response sent: {response.sid}")
+                return HttpResponse('OK')
+            except Exception as twilio_error:
+                print(f"Twilio Error: {str(twilio_error)}")
+                return HttpResponse(f'Twilio error: {str(twilio_error)}', status=500)
+                
         except Exception as e:
-            return HttpResponse(str(e), status=500)
+            print(f"Webhook Error: {str(e)}")
+            return HttpResponse(f'Server error: {str(e)}', status=500)
     
     return HttpResponse('Method not allowed', status=405)
 
