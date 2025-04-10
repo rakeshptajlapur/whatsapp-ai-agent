@@ -22,3 +22,24 @@ class ChatMessage(models.Model):
         # Keep only last N messages
         messages = cls.objects.filter(sender=sender).order_by('-timestamp')[settings.CHAT_MESSAGE_MAX_PER_USER:]
         messages.delete()
+
+class TrainingContent(models.Model):
+    CONTENT_TYPES = (
+        ('rules', 'Business Rules'),
+        ('faq', 'FAQ'),
+        ('policy', 'Policies'),
+        ('pricing', 'Pricing'),
+        ('service', 'Services'),
+    )
+    
+    title = models.CharField(max_length=200)
+    content_type = models.CharField(max_length=20, choices=CONTENT_TYPES)
+    content = models.TextField()
+    is_active = models.BooleanField(default=True)
+    priority = models.IntegerField(default=0)
+    source_url = models.URLField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-priority', '-updated_at']

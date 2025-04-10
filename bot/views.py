@@ -7,7 +7,7 @@ import json
 from datetime import datetime, timedelta
 from django.utils import timezone
 from openai import OpenAI
-from .models import ChatMessage
+from .models import ChatMessage, TrainingContent
 from .training.agency_rules import AGENCY_RULES
 
 
@@ -26,6 +26,30 @@ def get_chat_history(sender, limit=10):
         ])
     return history[::-1]  # Reverse to get chronological order
 
+def get_system_prompt():
+    """Generate system prompt from active training content"""
+    training_content = TrainingContent.objects.filter(is_active=True)
+    
+    prompt_sections = []
+    
+    # Add business rules
+    rules = training_content.filter(content_type='rules')
+    if (rules.exists()):
+        prompt_sections.append("BUSINESS RULES:")
+        for rule in rules:
+            prompt_sections.append(rule.content)
+    
+    # Add FAQs
+    faqs = training_content.filter(content_type='faq')
+    if (faqs.exists()):
+        prompt_sections.append("FREQUENTLY ASKED QUESTIONS:")
+        for faq in faqs:
+            prompt_sections.append(faq.content)
+    
+    # Add other sections...
+    
+    return "\n\n".join(prompt_sections)
+
 def get_ai_response(message, sender):
     try:
         # Check for hosting-related queries first
@@ -35,57 +59,14 @@ def get_ai_response(message, sender):
         chat_history = get_chat_history(sender)
         
         system_prompt = f"""You are CodeBot, an AI support assistant for Codesiddhi Technologies LLP. 🤖
-
-INTRO:
-"Hi! 👋 I'm CodeBot, your friendly AI assistant for web development projects at Codesiddhi Technologies.
-I'm still learning and improving, but I'll do my best to help or connect you with our specialists!"
-
-{AGENCY_RULES['achievements']['intro']}
-{chr(10).join(AGENCY_RULES['achievements']['stats'])}
-
-SERVICES WE OFFER:
-✅ What We Do:
-{chr(10).join(f"- {service}" for service in AGENCY_RULES['services']['what_we_do'])}
-
-❌ What We Don't Do:
-{chr(10).join(f"- {service}" for service in AGENCY_RULES['services']['what_we_dont'])}
-
-PRICING & PACKAGES:
-🎯 Full Projects (includes {', '.join(AGENCY_RULES['pricing']['full_projects']['includes'])}):
-- ${AGENCY_RULES['pricing']['full_projects']['basic']['cost']} ({AGENCY_RULES['pricing']['full_projects']['basic']['duration']})
-- ${AGENCY_RULES['pricing']['full_projects']['standard']['cost']} ({AGENCY_RULES['pricing']['full_projects']['standard']['duration']})
-- Custom projects: Quote based on scope
-
-PROJECT WORKFLOW:
-1. Execution:
-- {AGENCY_RULES['workflow']['project_execution']['milestones']}
-- {AGENCY_RULES['workflow']['project_execution']['revisions']}
-
-2. Payment Terms:
-- {AGENCY_RULES['workflow']['payment']['quote_validity']}
-- {AGENCY_RULES['workflow']['payment']['payment_terms']}
-- {AGENCY_RULES['workflow']['payment']['late_policy']}
-
-SUPPORT WORKFLOW:
-1. For project inquiries:
-   - Ask for project requirements
-   - Share relevant pricing
-   - Explain milestone-based payments
-   - Collect: email, phone, timeline expectations
-
-2. For existing clients:
-   - Verify project name/domain
-   - Create support ticket if needed
-   - Response time: {AGENCY_RULES['communication']['response_time']}
-
-Portfolio: {AGENCY_RULES['portfolio']['work']}
-Templates: {AGENCY_RULES['portfolio']['templates']}
+        
+{get_system_prompt()}
 
 COMMUNICATION STYLE:
 - Be friendly and empathetic 😊
 - Keep responses under 100 words
 - Use emojis appropriately
-- Reference portfolio when relevant
+- Reference specific business rules when answering
 - Consider chat history for context
 - Be transparent about being AI"""
 
