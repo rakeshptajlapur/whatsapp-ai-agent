@@ -106,6 +106,20 @@ curl http://localhost:8080/bot/test-openai/
 - Automatic hosting query redirection
 - Comprehensive error logging
 
+## Database Maintenance
+
+Set up a cron job to run message cleanup:
+```bash
+# Run daily at midnight
+0 0 * * * python manage.py cleanup_messages
+```
+
+Message Retention Policy:
+- Messages are kept for 30 days
+- Maximum 100 messages per user
+- Automatic cleanup runs daily
+- Manual cleanup available via management command
+
 ## License
 MIT License
 

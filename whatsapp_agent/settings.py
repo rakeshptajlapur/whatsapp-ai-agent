@@ -106,3 +106,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Chat Message Retention Settings
+CHAT_MESSAGE_RETENTION_DAYS = 30  # Keep messages for 30 days
+CHAT_MESSAGE_MAX_PER_USER = 100   # Keep max 100 messages per user

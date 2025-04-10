@@ -134,6 +134,9 @@ def webhook(request):
             sender = f'whatsapp:{sender}'
 
         try:
+            # Cleanup old messages before processing new one
+            ChatMessage.cleanup_old_messages(sender)
+            
             # Get AI response with history
             ai_response = get_ai_response(incoming_msg, sender)
             
