@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: whatsapp-ai-agent
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py makemigrations
+      python manage.py migrate
+    startCommand: gunicorn whatsapp_agent.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DJANGO_SETTINGS_MODULE
+        value: whatsapp_agent.settings
+      - key: DEBUG
+        value: False

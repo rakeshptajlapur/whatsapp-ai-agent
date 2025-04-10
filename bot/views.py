@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from twilio.rest import Client
@@ -9,6 +9,7 @@ from django.utils import timezone
 from openai import OpenAI
 from .models import ChatMessage, TrainingContent
 from .training.agency_rules import AGENCY_RULES
+import os
 
 
 client_twilio = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
@@ -181,3 +182,21 @@ def test_openai(request):
         return HttpResponse(f"OpenAI Test Response: {test_response}")
     except Exception as e:
         return HttpResponse(f"OpenAI Test Failed: {str(e)}", status=500)
+
+def debug_info(request):
+    try:
+        chat_count = ChatMessage.objects.count()
+        last_message = ChatMessage.objects.last()
+        return JsonResponse({
+            'environment': 'render' if os.getenv('RENDER') else 'local',
+            'database_connected': True,
+            'message_count': chat_count,
+            'last_message_time': str(last_message.timestamp) if last_message else None,
+            'twilio_configured': bool(settings.TWILIO_ACCOUNT_SID),
+            'openai_configured': bool(settings.OPENAI_API_KEY)
+        })
+    except Exception as e:
+        return JsonResponse({
+            'error': str(e),
+            'status': 'database_not_connected'
+        }, status=500)
