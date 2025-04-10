@@ -123,8 +123,11 @@ Remember: Be professional but friendly, like a helpful colleague they can trust!
 def webhook(request):
     if request.method == 'POST':
         try:
-            # Log incoming request data
-            print("Incoming webhook data:", request.POST)
+            # More detailed logging
+            print("==== WEBHOOK REQUEST START ====")
+            print("Headers:", dict(request.headers))
+            print("POST data:", dict(request.POST))
+            print("==== WEBHOOK REQUEST END ====")
             
             incoming_msg = request.POST.get('Body', '')
             sender = request.POST.get('From', '')
@@ -133,32 +136,34 @@ def webhook(request):
                 print("Error: Missing sender or message")
                 return HttpResponse('Missing parameters', status=400)
 
-            if not sender.startswith('whatsapp:'):
-                sender = f'whatsapp:{sender}'
-
-            print(f"Processing message from {sender}: {incoming_msg}")
+            print(f"Processing message - From: {sender}, Message: {incoming_msg}")
             
-            # Get AI response
+            # Get AI response with logging
+            print("Getting AI response...")
             ai_response = get_ai_response(incoming_msg, sender)
+            print(f"AI Response received: {ai_response}")
+            
             if not ai_response:
                 print("Error: No response from AI")
                 return HttpResponse('AI response error', status=500)
                 
-            # Send WhatsApp response
+            # Send WhatsApp response with logging
             try:
+                print(f"Sending Twilio message to {sender}")
+                print(f"Using WhatsApp number: {settings.WHATSAPP_NUMBER}")
                 response = client_twilio.messages.create(
                     from_=settings.WHATSAPP_NUMBER,
                     body=ai_response,
                     to=sender
                 )
-                print(f"Twilio response sent: {response.sid}")
+                print(f"Twilio response success! SID: {response.sid}")
                 return HttpResponse('OK')
             except Exception as twilio_error:
-                print(f"Twilio Error: {str(twilio_error)}")
+                print(f"Twilio Error Details: {str(twilio_error)}")
                 return HttpResponse(f'Twilio error: {str(twilio_error)}', status=500)
                 
         except Exception as e:
-            print(f"Webhook Error: {str(e)}")
+            print(f"Detailed Webhook Error: {str(e)}")
             return HttpResponse(f'Server error: {str(e)}', status=500)
     
     return HttpResponse('Method not allowed', status=405)
@@ -199,4 +204,24 @@ def debug_info(request):
         return JsonResponse({
             'error': str(e),
             'status': 'database_not_connected'
+        }, status=500)
+
+@csrf_exempt
+def test_twilio(request):
+    try:
+        test_message = client_twilio.messages.create(
+            from_=settings.WHATSAPP_NUMBER,
+            body="Test message from Render deployment",
+            to='whatsapp:+918970175205'  # Replace with your number
+        )
+        return JsonResponse({
+            'status': 'success',
+            'message_sid': test_message.sid,
+            'whatsapp_number': settings.WHATSAPP_NUMBER,
+            'twilio_sid': settings.TWILIO_ACCOUNT_SID[-6:],  # Last 6 chars for security
+        })
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'error': str(e)
         }, status=500)
