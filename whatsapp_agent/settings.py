@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this line after security middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -110,3 +111,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Chat Message Retention Settings
 CHAT_MESSAGE_RETENTION_DAYS = 30  # Keep messages for 30 days
 CHAT_MESSAGE_MAX_PER_USER = 100   # Keep max 100 messages per user
+
+# Add these lines at the bottom
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
