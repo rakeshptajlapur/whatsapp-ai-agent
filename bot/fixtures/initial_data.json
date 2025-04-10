@@ -1,0 +1,72 @@
+[
+{
+  "model": "bot.trainingcontent",
+  "pk": 1,
+  "fields": {
+    "title": "Biz Conditions",
+    "content_type": "rules",
+    "content": "WHAT WE DO\r\n\r\nWe build websites and web applications using WordPress and Python/Django.\r\n\r\nWe offer Figma UI/UX design.\r\n\r\nWe support hosting setup, deployment, and site migrations.\r\n\r\nWe provide mobile responsive and browser-compatible builds.\r\n\r\nWe handle REST APIs, dashboards, and automation tools.\r\n\r\nWe offer monthly website maintenance and dev support plans.\r\n\r\nFirst consultation is free. Further consultations are paid unless project starts.\r\n\r\nWHAT WE DON’T DO\r\n\r\nWe do not work with Wix, Shopify, or Squarespace.\r\n\r\nWe do not build native mobile apps.\r\n\r\nWe do not provide content writing, SEO, or marketing unless discussed.\r\n\r\nWe do not build complex custom plugins/modules without a separate scope.\r\n\r\nPRICING STRUCTURE\r\n\r\nFull project build starting at 1000 USD for 10-15 days timeline.\r\n\r\n2000 USD for 20-30 days timeline.\r\n\r\nProjects requiring more than 30 days will receive a custom quote.\r\n\r\nMinor issues like bug fixes, SEO errors, speed improvements or migrations are charged 50 USD per task.\r\n\r\nMonthly maintenance plans available at 99 USD, 149 USD, and 299 USD with varying levels of support and dev hours.\r\n\r\nPAYMENT & MILESTONE POLICY\r\n\r\nAll projects follow a prepaid milestone system.\r\n\r\nQuotes are valid for 7 days only.\r\n\r\nPayments must be made within 7 days of invoice, else project work will be paused.\r\n\r\nNew clients are eligible for a refund within 7 days if no meaningful work is done.\r\n\r\nProjects include 2 free revisions per milestone. Extra revisions will be charged.\r\n\r\nFEEDBACK POLICY\r\n\r\nClients must provide feedback within 3 days of submission.\r\n\r\nDelayed feedback after 3 days will result in a timeline extension from day 4.\r\n\r\nSCOPE CREEP POLICY\r\n\r\nNew tasks not part of the original scope must be submitted via the Feature Addition Form.\r\n\r\nNew quote and delivery timeline will be confirmed after internal review.\r\n\r\nURGENT TASK / RESCHEDULING POLICY\r\n\r\nIf task priority or sequence is to be changed mid-project, a Reschedule Request Form must be filled.\r\n\r\nThis will not change the price but will extend the timeline due to reshuffling.\r\n\r\nCONSULTATION POLICY\r\n\r\nFirst consultation is free (30 minutes max).\r\n\r\nAdditional pre-project consultations are 49 USD per call.\r\n\r\nUrgent meetings during the project outside scheduled feedback meetings are also charged at 49 USD per call.\r\n\r\nCOMMUNICATION POLICY\r\n\r\nPhone support is not provided.\r\n\r\nSupport is provided via WhatsApp 24/7 and via email with priority.\r\n\r\nWeekly feedback updates are provided.\r\n\r\nAny meetings outside of scheduled feedback check-ins are paid.\r\n\r\nCODE OWNERSHIP & CREDITS\r\n\r\nClients own the code after full payment.\r\n\r\nFooter credits are optional.\r\n\r\nProject may be used in our portfolio unless NDA is signed.\r\n\r\nCOMPANY INFO\r\n\r\nCompany name: Codesiddhi Technologies LLP\r\n\r\nBrand name: codesiddhi",
+    "is_active": true,
+    "priority": 0,
+    "source_url": "https://chatgpt.com/canvas/shared/67f76f06396c8191b6a5921e3cd78589",
+    "created_at": "2025-04-10T07:11:09.553Z",
+    "updated_at": "2025-04-10T07:20:09.376Z"
+  }
+},
+{
+  "model": "bot.trainingcontent",
+  "pk": 2,
+  "fields": {
+    "title": "FAQ",
+    "content_type": "faq",
+    "content": "Frequently Asked Questions (FAQs)\r\n1. What kind of projects do you take up?\r\nWe specialize in:\r\n\r\nWordPress (including WooCommerce, ACF, SEO, speed)\r\n\r\nCustom tools and dashboards using Python/Django\r\n\r\nUI/UX design using Figma\r\n\r\nHosting, deployment, and site migrations\r\n\r\nWe do not work on Wix, Shopify, mobile apps, or content marketing projects.\r\n\r\n2. What is your pricing model?\r\nFull project builds start at $1,000 (10–15 days)\r\n\r\nLarger builds start at $2,000 (20–30 days)\r\n\r\nProjects beyond 30 days are quoted case-by-case\r\n\r\nMinor tasks like bug fixes or SEO tweaks are $50 per incident\r\n\r\nMonthly maintenance plans start at $99/month\r\n\r\n3. Do I have to pay the full amount upfront?\r\nNo. We work on a milestone-based prepaid system. Each milestone is discussed and paid before that phase begins.\r\n\r\n4. How do you handle revisions?\r\nEach milestone includes 2 free revisions. Additional revisions may be billed separately depending on complexity.\r\n\r\n5. What if I need to add a feature mid-project?\r\nYou’ll need to fill a Feature Addition Form. We will assess the task, provide a quote and update the delivery timeline accordingly.\r\n\r\n6. What if I want to change the task priority or sequence?\r\nYou can submit a Reschedule Request Form. It may not increase the cost but will likely extend the timeline depending on availability.\r\n\r\n7. Do you support phone calls?\r\nWe don’t provide phone support. We offer:\r\n\r\n24/7 WhatsApp support\r\n\r\nEmail support (priority response)\r\n\r\nWeekly scheduled feedback meetings\r\n\r\nAdditional urgent calls or consultations are available at $49 per call\r\n\r\n8. Is my project mobile and browser compatible?\r\nYes. All builds are mobile-responsive and tested across major browsers.\r\n\r\n9. What’s your refund policy?\r\nFor new clients:\r\nIf no meaningful work is completed within 7 days of payment, we offer a 100% refund. Once work begins, milestone payments are non-refundable.\r\n\r\n10. What happens if I delay feedback?\r\nYou’re expected to respond within 3 days after submission of deliverables. From the 4th day onward, your delay will extend the deadline accordingly.\r\n\r\n11. Do you offer consultations?\r\nFirst pre-project consultation is free (up to 30 minutes)\r\n\r\nAdditional consultations before project confirmation are $49 per session\r\n\r\nUrgent meetings during an ongoing project (outside regular check-ins) are also $49 per session\r\n\r\n12. Who owns the code?\r\nYou own 100% of the code after full payment. We request footer credits if allowed and may use the project in our portfolio unless an NDA is signed.\r\n\r\n13. How long are quotes valid?\r\nAll quotes are valid for 7 days. Post that, scope and pricing may change based on availability or updated requirements.",
+    "is_active": true,
+    "priority": 0,
+    "source_url": null,
+    "created_at": "2025-04-10T07:14:19.770Z",
+    "updated_at": "2025-04-10T07:18:11.988Z"
+  }
+},
+{
+  "model": "bot.trainingcontent",
+  "pk": 3,
+  "fields": {
+    "title": "Policy",
+    "content_type": "policy",
+    "content": "Codesiddhi – Service & Project Policy Document\r\nServices We Offer\r\nFull WordPress development (WooCommerce, ACF, SEO/speed optimization)\r\n\r\nPython/Django development (REST APIs, custom dashboards, automation tools)\r\n\r\nUI/UX design using Figma\r\n\r\nHosting setup, site migrations, and deployment support\r\n\r\nConsultation and project planning assistance\r\n\r\nServices We Don’t Offer\r\nProjects on platforms like Wix, Shopify, or Squarespace\r\n\r\nMobile or native app development\r\n\r\nDeep custom plugin/module development (unless separately scoped)\r\n\r\nContent writing or digital marketing (unless pre-agreed)\r\n\r\nPricing Policy\r\nFull Project Builds:\r\n\r\n$1,000 for 10–15 day project\r\n\r\n$2,000 for 20–30 day project\r\n\r\nCustom quote for projects beyond 30 days\r\n\r\nMinor Gigs/Tasks (per incidence):\r\n\r\n$50 for issues like bug fixes, SEO, speed optimization, or site migrations\r\n\r\nMonthly Maintenance Plans:\r\n\r\n$99 – Uptime monitoring and updates\r\n\r\n$149 – Includes dev hours for minor tasks\r\n\r\n$299 – Includes backups, security checks, 2hr/month dev time, and priority support\r\nAll plans are no-contract and can be cancelled anytime.\r\n\r\nTimeline & Project Execution\r\nProjects are executed in prepaid milestone phases\r\n\r\nWeekly progress updates via WhatsApp or email\r\n\r\nTwo free revisions per milestone; extra revisions are chargeable\r\n\r\nClient must share feedback within 3 days after submission; delays extend project deadline from day 4 onward\r\n\r\nScope Creep & Urgent Task Policy\r\nAny additional features must be submitted via the “Feature Addition Form”\r\n\r\nUrgent reshuffling of tasks during the project requires a “Reschedule Request Form”\r\n\r\nNo change in quote unless features are added, but timeline may be extended\r\n\r\nClient Communication & Support\r\nNo phone call support\r\n\r\n24/7 WhatsApp support and priority email communication\r\n\r\nWeekly feedback meeting or reporting included\r\n\r\nAdditional consultation or urgent meetings (outside scheduled feedback) cost $49 per call\r\n\r\nConsultation Policy\r\nFirst pre-project consultation call is free (up to 30 mins)\r\n\r\nAdditional consultations before project confirmation are $49 per call\r\n\r\nCode Ownership & Portfolio Usage\r\nClient owns 100% of the code upon full payment\r\n\r\nFooter credits are optional and can be removed if desired\r\n\r\nWe may include the project in our portfolio unless an NDA is in place\r\n\r\nQuote, Payment & Refund Policies\r\nQuotes are valid for 7 days from the issue date\r\n\r\nInvoices must be paid within 7 days or all services and milestones will be paused\r\n\r\nNew client refund policy: 100% refundable within 7 days if no meaningful work has been done\r\n\r\nTechnical Delivery Guarantees\r\nAll projects are delivered fully mobile-responsive\r\n\r\nAll projects are tested for cross-browser compatibility\r\n\r\nCompany: Codesiddhi Technologies LLP\r\nBrand: codesiddhi",
+    "is_active": true,
+    "priority": 0,
+    "source_url": null,
+    "created_at": "2025-04-10T07:16:58.632Z",
+    "updated_at": "2025-04-10T07:16:58.632Z"
+  }
+},
+{
+  "model": "bot.trainingcontent",
+  "pk": 4,
+  "fields": {
+    "title": "pricing rules",
+    "content_type": "pricing",
+    "content": "PRICING RULES - CODESIDDHI SERVICES\r\n\r\nFull Project Builds (Design + Development + Deployment + 1-Month Bug Fix Warranty):\r\n\r\n$1000 USD: Project timeline of 10–15 days\r\n\r\n$2000 USD: Project timeline of 20–30 days\r\n\r\nProjects requiring more than 30 days: Custom quote will be shared after evaluation\r\n\r\nMinor Tasks / Gigs (One-Time Incidents):\r\n\r\n$50 USD per incident\r\n\r\nIncludes tasks such as:\r\n\r\nBug fixing\r\n\r\nPage speed issues\r\n\r\nSEO errors\r\n\r\nWebsite migrations\r\n\r\nMonthly Maintenance Plans:\r\n\r\n$99 USD/month\r\n\r\nUptime monitoring\r\n\r\nBasic updates\r\n\r\n$149 USD/month\r\n\r\nIncludes $99 plan features\r\n\r\nPlus developer time for small tasks\r\n\r\n$299 USD/month\r\n\r\nIncludes all features from $149 plan\r\n\r\n2 hours of dev time per month\r\n\r\nSecurity checks and backups\r\n\r\nPriority WhatsApp and call support\r\n\r\nConsultation Pricing:\r\n\r\nFirst consultation (30 mins): Free\r\n\r\nAdditional consultation calls before project starts: $49 USD per call\r\n\r\nUrgent meeting requests during active project (outside of feedback schedule): $49 USD per call\r\n\r\nImportant Notes:\r\n\r\nPricing is exclusive of taxes or payment gateway fees (if any).\r\n\r\nAll milestones are prepaid before starting the work.\r\n\r\nIf a project includes new tasks outside the scope, an additional quote and timeline will be provided.\r\n\r\nRescheduling task priority during a project may affect the timeline but not the quote.\r\n\r\nAll quotes are valid for 7 days.\r\n\r\nPayment is due within 7 days of invoice.\r\n\r\nIf no meaningful work is done within 7 days of payment for new clients, full refund available.",
+    "is_active": true,
+    "priority": 0,
+    "source_url": null,
+    "created_at": "2025-04-10T07:20:59.857Z",
+    "updated_at": "2025-04-10T07:20:59.857Z"
+  }
+},
+{
+  "model": "bot.trainingcontent",
+  "pk": 5,
+  "fields": {
+    "title": "About company",
+    "content_type": "service",
+    "content": "SERVICES OFFERED\r\nWe provide the following services under Codesiddhi Technologies LLP:\r\n\r\nFull Website Development\r\n\r\nWordPress (ACF, WooCommerce, SEO, Speed Optimization)\r\n\r\nPython/Django (custom dashboards, REST APIs, dynamic tools)\r\n\r\nFully responsive and cross-browser compatible\r\n\r\nUX/UI Design\r\n\r\nHigh-quality custom designs using Figma\r\n\r\nHosting & Deployment\r\n\r\nEnd-to-end hosting support (we handle server setup, deployment, and launch)\r\n\r\nNo need for a separate DevOps unless preferred by the client\r\n\r\nSite Migrations\r\n\r\nHandled under our $50/incident gig pricing\r\n\r\nConsultation Services\r\n\r\nFirst call free (up to 30 minutes)\r\n\r\nPaid consultations available at $49 USD per call (pre-project or urgent mid-project)\r\n\r\nMaintenance Plans\r\n\r\nOngoing support including uptime monitoring, updates, backups, minor fixes, and priority support\r\n\r\nMonthly plans: $99 / $149 / $299 USD\r\n\r\nCustom Tools & Business Dashboards\r\n\r\nBuilt using Django/Python and REST APIs\r\n\r\nTailored for business automation and internal processes\r\n\r\nWHY CHOOSE US\r\n500+ Websites Delivered\r\n\r\nExperience across various industries, high-quality delivery\r\n\r\n10+ Custom Web Applications Built\r\n\r\nDesigned for business use cases, automation, and performance\r\n\r\nTop-Rated Developer on Upwork\r\n\r\nConsistent 5-star feedback from global clients\r\n\r\n20,000+ Students Trained via Udemy\r\n\r\nRecognized educator in web technologies\r\n\r\n8+ Years in the Industry\r\n\r\nStrong knowledge of what works and what doesn’t in web development\r\n\r\nEnd-to-End Delivery\r\n\r\nWe handle everything from UI/UX to development to deployment\r\n\r\nClients don’t need to hire separate design or DevOps teams\r\n\r\nStrict Processes & Transparent Policies\r\n\r\nClear scopes, milestone-based progress, defined refund and support policies\r\n\r\nClient-First Support Model\r\n\r\nWhatsApp (24/7) and Email Support (priority)\r\n\r\nWeekly updates and optional feedback meetings",
+    "is_active": true,
+    "priority": 0,
+    "source_url": null,
+    "created_at": "2025-04-10T07:22:01.674Z",
+    "updated_at": "2025-04-10T07:22:01.674Z"
+  }
+}
+]
