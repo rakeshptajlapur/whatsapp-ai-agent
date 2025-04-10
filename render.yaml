@@ -7,6 +7,7 @@ services:
       python manage.py makemigrations
       python manage.py migrate
       python manage.py loaddata initial_data
+      echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin123') if not User.objects.filter(username='admin').exists() else print('Superuser exists')" | python manage.py shell
     startCommand: gunicorn whatsapp_agent.wsgi:application
     envVars:
       - key: PYTHON_VERSION

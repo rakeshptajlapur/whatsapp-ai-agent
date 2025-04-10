@@ -119,52 +119,59 @@ Remember: Be professional but friendly, like a helpful colleague they can trust!
         print(f"OpenAI Error: {str(e)}")
         return "I'm having a brief technical hiccup. Please try again or reach out to our team at support@codesiddhi.com 🙏"
 
-@csrf_exempt
+@csrf_exempt 
 def webhook(request):
     if request.method == 'POST':
         try:
-            # More detailed logging
-            print("==== WEBHOOK REQUEST START ====")
-            print("Headers:", dict(request.headers))
-            print("POST data:", dict(request.POST))
-            print("==== WEBHOOK REQUEST END ====")
+            # Log EVERYTHING 
+            print("\n=== FULL WEBHOOK DEBUG ===")
+            print("1. Request Method:", request.method)
+            print("2. Request Headers:", dict(request.headers))
+            print("3. Request Body:", request.body.decode())
+            print("4. POST Data:", dict(request.POST))
+            print("5. GET Data:", dict(request.GET))
             
-            incoming_msg = request.POST.get('Body', '')
-            sender = request.POST.get('From', '')
-
+            # Get message data
+            incoming_msg = request.POST.get('Body')
+            sender = request.POST.get('From')
+            
+            print("6. Message:", incoming_msg)
+            print("7. Sender:", sender)
+            
+            # If no message/sender, try JSON body
+            if not incoming_msg or not sender:
+                try:
+                    body_data = json.loads(request.body.decode())
+                    incoming_msg = body_data.get('Body')
+                    sender = body_data.get('From')
+                    print("8. JSON Body Data:", body_data)
+                except:
+                    print("9. No JSON body found")
+            
             if not sender or not incoming_msg:
-                print("Error: Missing sender or message")
-                return HttpResponse('Missing parameters', status=400)
+                print("10. Missing Data - Sender or Message not found")
+                return HttpResponse('Missing data', status=400)
 
-            print(f"Processing message - From: {sender}, Message: {incoming_msg}")
-            
-            # Get AI response with logging
-            print("Getting AI response...")
+            print("11. Getting AI Response...")
             ai_response = get_ai_response(incoming_msg, sender)
-            print(f"AI Response received: {ai_response}")
+            print("12. AI Response:", ai_response)
+
+            print("13. Sending via Twilio...")
+            response = client_twilio.messages.create(
+                from_=settings.WHATSAPP_NUMBER,
+                body=ai_response,
+                to=sender
+            )
+            print("14. Twilio Success:", response.sid)
+            print("=== END WEBHOOK DEBUG ===\n")
             
-            if not ai_response:
-                print("Error: No response from AI")
-                return HttpResponse('AI response error', status=500)
-                
-            # Send WhatsApp response with logging
-            try:
-                print(f"Sending Twilio message to {sender}")
-                print(f"Using WhatsApp number: {settings.WHATSAPP_NUMBER}")
-                response = client_twilio.messages.create(
-                    from_=settings.WHATSAPP_NUMBER,
-                    body=ai_response,
-                    to=sender
-                )
-                print(f"Twilio response success! SID: {response.sid}")
-                return HttpResponse('OK')
-            except Exception as twilio_error:
-                print(f"Twilio Error Details: {str(twilio_error)}")
-                return HttpResponse(f'Twilio error: {str(twilio_error)}', status=500)
-                
+            return HttpResponse('OK')
+            
         except Exception as e:
-            print(f"Detailed Webhook Error: {str(e)}")
-            return HttpResponse(f'Server error: {str(e)}', status=500)
+            import traceback
+            print("ERROR:", str(e))
+            print("Traceback:", traceback.format_exc())
+            return HttpResponse(str(e), status=500)
     
     return HttpResponse('Method not allowed', status=405)
 
