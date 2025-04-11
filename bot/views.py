@@ -232,3 +232,21 @@ def test_twilio(request):
             'status': 'error',
             'error': str(e)
         }, status=500)
+    
+#to keep the service up on render
+def health_check(request):
+    try:
+        # Test database connection
+        from bot.models import TrainingContent
+        TrainingContent.objects.first()
+        
+        return JsonResponse({
+            "status": "healthy",
+            "timestamp": timezone.now().isoformat(),
+            "database": "connected"
+        })
+    except Exception as e:
+        return JsonResponse({
+            "status": "unhealthy",
+            "error": str(e)
+        }, status=500)
